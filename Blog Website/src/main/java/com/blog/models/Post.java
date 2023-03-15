@@ -24,11 +24,11 @@ public class Post {
     private String content;
     private Date publishedDate;
     private Integer likes = 0;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "author_id")
     private User author;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
-    @ManyToMany
-    private List<Tag> tags = new ArrayList<>();
+    @ElementCollection
+    private List<String> tags = new ArrayList<>();
 }

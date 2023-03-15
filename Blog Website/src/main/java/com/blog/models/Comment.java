@@ -24,5 +24,4 @@ public class Comment {
     private Post post;
 
     private Integer likes = 0;
-
 }
