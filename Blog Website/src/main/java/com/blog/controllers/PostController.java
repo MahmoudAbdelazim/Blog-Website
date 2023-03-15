@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/api/posts")
 public class PostController {
-
     private final PostService postService;
 
     @GetMapping("/post-{id}")

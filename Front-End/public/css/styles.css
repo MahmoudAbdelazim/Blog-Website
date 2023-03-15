@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    font-family: "roboto";
+}
+
+.register-page {
+    margin-top: 100px;
+}
+
+.register-form {
+    width: 30%;
+    margin: auto;
+    padding: 20px;
+}

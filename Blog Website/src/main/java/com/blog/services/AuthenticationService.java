@@ -4,6 +4,7 @@ import com.blog.auth.AuthenticationResponse;
 import com.blog.auth.JwtService;
 import com.blog.auth.LoginRequest;
 import com.blog.auth.RegisterRequest;
+import com.blog.exceptions.EmailAlreadyExists;
 import com.blog.models.Role;
 import com.blog.models.User;
 import com.blog.repositories.UserRepository;
@@ -23,7 +24,10 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws EmailAlreadyExists {
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new EmailAlreadyExists();
+        }
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
