@@ -4,11 +4,34 @@ body {
 }
 
 .register-page {
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 .register-form {
     width: 30%;
     margin: auto;
     padding: 20px;
+}
+
+/* ----------------------------------------------------- */
+
+.login-page {
+    padding-top: 100px;
+}
+
+.login-form {
+    width: 30%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ----------------------------------------------------- */
+
+.add-post-page {
+    padding-top: 70px;
+}
+
+.add-post-form {
+    width: 50%;
+    margin: auto;
 }

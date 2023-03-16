@@ -24,7 +24,7 @@ public class Post {
     private String content;
     private Date publishedDate;
     private Integer likes = 0;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
     @OneToMany(cascade = CascadeType.ALL)

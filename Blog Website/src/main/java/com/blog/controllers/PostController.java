@@ -1,11 +1,13 @@
 package com.blog.controllers;
 
 import com.blog.exceptions.PostNotFoundException;
+import com.blog.models.User;
 import com.blog.payload.PostDto;
 import com.blog.services.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,8 +22,8 @@ public class PostController {
     }
 
     @PostMapping("/add-post")
-    public ResponseEntity<String> addPost(@RequestBody PostDto postDto) {
-        postService.addPost(postDto);
+    public ResponseEntity<String> addPost(@AuthenticationPrincipal User user, @RequestBody PostDto postDto) {
+        postService.addPost(user, postDto);
         return ResponseEntity.ok("Post Added Successfully");
     }
 

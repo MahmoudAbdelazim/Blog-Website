@@ -49,9 +49,7 @@ public class PostService {
         return postDto;
     }
 
-    public void addPost(PostDto postDto) {
-        User author = userRepository.findByEmail(postDto.getAuthorEmail())
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
+    public void addPost(User user, PostDto postDto) {
         Post post = Post
                 .builder()
                 .content(postDto.getContent())
@@ -59,7 +57,7 @@ public class PostService {
                 .title(postDto.getTitle())
                 .likes(0)
                 .tags(postDto.getTags())
-                .author(author)
+                .author(user)
                 .build();
         postRepository.saveAndFlush(post);
     }
