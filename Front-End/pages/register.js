@@ -47,7 +47,7 @@ const RegisterPage = () => {
 
   return (
     <div className="register-page">
-      <h2>Create An Account</h2>
+      <h2 className="dark-blue">Create An Account</h2>
       <Stack
         component={"form"}
         sx={{

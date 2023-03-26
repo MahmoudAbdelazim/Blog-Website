@@ -1,6 +1,18 @@
 body {
-    text-align: center;
-    font-family: "roboto";
+    font-family: 'Lato', sans-serif;
+    color: rgba(41, 41, 41, 1);
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+.dark-blue {
+    color: #146C94;
+}
+
+.light-blue {
+    color: #19A7CE;
 }
 
 .register-page {

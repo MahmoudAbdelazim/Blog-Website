@@ -50,7 +50,7 @@ const AddPostPage = () => {
 
   return (
     <div className="add-post-page">
-      <h2>Write a new Post</h2>
+      <h2 className="dark-blue">Write a new Post</h2>
       <Stack
         component={"form"}
         autoComplete={"off"}

@@ -48,7 +48,7 @@ const RegisterPage = () => {
 
   return (
     <div className="login-page">
-      <h2>Log In to your account</h2>
+      <h2 className="dark-blue">Log In to your account</h2>
       <Stack
         component={"form"}
         sx={{
