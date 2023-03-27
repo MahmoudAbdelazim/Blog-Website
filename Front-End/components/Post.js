@@ -1,20 +1,21 @@
-const Post = ({post}) => {
+const Post = ({ post }) => {
   return (
-    <div>
-      <h3>{post.title}</h3>
-      <p>{post.firstName} {post.lastName} </p>
-      <p>{post.publishedDate} </p>
-      <p>{post.content}
+    <div className="post">
+      <h3 className="post-title dark-blue">{post.title}</h3>
+      <p className="post-author">
+        {post.authorFirstName} {post.authorLastName}{" "}
       </p>
-      <ul>
-        {post.tags.map((tag) => {
-          return (
-            <li>{tag}</li>
-          )
+      <p className="post-date">
+        {new Date(post.publishedDate).toLocaleDateString()}{" "}
+      </p>
+      <p className="post-content">{post.content}</p>
+      <ul className="post-tags">
+        {post.tags?.map((tag) => {
+          return <li>{tag}</li>;
         })}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 export default Post;

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Post from "./Post";
+import PostPreview from "./PostPreview";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
@@ -25,11 +25,11 @@ const PostsList = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Posts</h1>
+    <div className="posts-list">
+      <h1 className="posts-list-title">Posts</h1>
       {posts.map((post) => {
         return (
-          <Post post={post} />
+          <PostPreview post={post} />
         )
       })}
     </div>

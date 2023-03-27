@@ -1,8 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const RegisterPage = () => {
+  const {push} = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -34,7 +36,7 @@ const RegisterPage = () => {
           return response.text();
         } else {
           setMsg1("");
-          setMsg2("Email Already Exists");
+          setMsg2("Username or password is incorrent, please try again");
         }
       })
       .then((result) => {
@@ -42,6 +44,7 @@ const RegisterPage = () => {
         localStorage["token"] = token;
         setMsg2("");
         setMsg1("Logged In Successfully");
+        push("/");
       })
       .catch((error) => console.log("error", error));
   };
@@ -80,6 +83,7 @@ const RegisterPage = () => {
           Log In
         </Button>
       </Stack>
+      <p>Don't have an account yet? <a href="/register">Register</a></p>
       <p className="text-success">{msg1}</p>
       <p className="text-danger">{msg2}</p>
     </div>

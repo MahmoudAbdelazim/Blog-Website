@@ -1,11 +1,11 @@
 import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useEffect, useState } from "react";
-import {redirect} from "next/navigation"
-import {isSignedIn} from  "../utils"
+import { isSignedIn } from "../utils";
 import { useRouter } from "next/router";
 
 const AddPostPage = () => {
+  const {push} = useRouter();
   let router = useRouter();
   const [post, setPost] = useState({
     title: "",
@@ -17,7 +17,7 @@ const AddPostPage = () => {
     if (!isSignedIn()) {
       router.push("/login");
     }
-  }, [])
+  }, []);
 
   const handleInputChange = (e) => {
     setPost({
@@ -39,14 +39,13 @@ const AddPostPage = () => {
       redirect: "follow",
     };
     fetch(process.env.baseIp + "/posts/add-post", requestOptions)
-      .then((response) => { 
-        redirect
-        response.text();
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        push("/");
       })
-      .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
-
 
   return (
     <div className="add-post-page">

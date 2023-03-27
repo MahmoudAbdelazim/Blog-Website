@@ -1,8 +1,10 @@
 import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const RegisterPage = () => {
+  const {push} = useRouter();
   const [registerData, setRegisterData] = useState({
     firstName: "",
     lastName: "",
@@ -41,6 +43,7 @@ const RegisterPage = () => {
         const token = JSON.parse(result).token;
         localStorage["token"] = token;
         setMsg("");
+        push("/");
       })
       .catch((error) => console.log("error", error));
   };
@@ -53,7 +56,6 @@ const RegisterPage = () => {
         sx={{
           "& .MuiTextField-root": { m: 2 },
         }}
-        autoComplete={"off"}
         className="register-form"
         onSubmit={handleSubmit}
       >
@@ -97,6 +99,7 @@ const RegisterPage = () => {
           Sign Up
         </Button>
       </Stack>
+      <p>Already have an account? <a href="/login">Login</a></p>
       <p className="text-danger">{msg}</p>
     </div>
   );
