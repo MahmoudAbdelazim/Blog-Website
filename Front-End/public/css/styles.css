@@ -1,207 +1,258 @@
 body {
-    font-family: 'Lato', sans-serif;
-    color: rgba(41, 41, 41, 1);
-    font-size: 110%;
-    padding: 0 30px;
+  font-family: "Lato", sans-serif;
+  color: rgba(41, 41, 41, 1);
+  font-size: 110%;
+  padding: 0 30px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .dark-blue {
-    color: #146C94;
+  color: #146c94;
 }
 
 .light-blue {
-    color: #19A7CE;
+  color: #19a7ce;
 }
 
 /* ------------------------------------------------------------- */
 /* NAV */
 
 .nav {
-    display: flex;
-    padding: 10px 0;
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 2px solid #d2eff7;
 }
 
 .nav * {
-    display: inline-block;
-    vertical-align: middle;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .nav-title {
-    margin-right: 20px;
-    font-weight: 300;
+  margin-right: 20px;
+  font-weight: 300;
 }
 
 .nav-left {
-    flex: 50%;
-    text-align: left;
+  flex: 50%;
+  text-align: left;
 }
 
 .nav-right {
-    flex: 50%;
-    text-align: right;
+  flex: 50%;
+  text-align: right;
 }
 
 .nav-right a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------- */
+/* LANDING */
+
+.landing {
+  text-align: center;
+  margin-top: 20vh;
+  min-height: 50vh;
+}
+
+.landing-buttons-container a {
+  margin-top: 70px;
 }
 
 
+.register-button {
+  margin-right: 50px;
+}
+
+.register-button:hover {
+  color: white
+}
 /* ---------------------------------------------------------- */
 /* REGISTER */
 
 .register-page {
-    padding-top: 100px;
-    text-align: center;
+  padding-top: 100px;
+  text-align: center;
 }
 
 .register-form {
-    width: 30%;
-    margin: auto;
-    padding: 20px;
+  width: 30%;
+  margin: auto;
+  padding: 20px;
 }
 
 /* ----------------------------------------------------- */
 /* LOGIN  */
 
 .login-page {
-    padding-top: 100px;
-    text-align: center;
+  padding-top: 100px;
+  text-align: center;
 }
 
 .login-form {
-    width: 30%;
-    margin: auto;
-    padding: 20px;
+  width: 30%;
+  margin: auto;
+  padding: 20px;
 }
 
 /* ----------------------------------------------------- */
 /* ADD POST  */
 
 .add-post-page {
-    padding-top: 70px;
-    text-align: center;
+  padding-top: 70px;
+  text-align: center;
 }
 
 .add-post-form {
-    width: 50%;
-    margin: auto;
+  width: 50%;
+  margin: auto;
+}
+
+.add-tag-container * {
+  vertical-align: middle;
 }
 
 /* --------------------------------------------------------- */
 /* POST PREVIEW */
 
 .post-preview {
-    padding: 30px;
-    border-top: 1px solid #19a7ce7a;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    transition: 0.2s;
+  padding: 30px;
+  border-top: 2px solid #d0f2fb;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  transition: 0.2s;
 }
 
-.post-preview-link, .post-preview-link:hover {
-    text-decoration: none;
-    color: inherit;
+.post-preview-link,
+.post-preview-link:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .post-preview:hover {
-    color: inherit;
-    background-color: #24283708;
-    transition: 0.2s;
+  color: inherit;
+  background-color: #24283708;
+  transition: 0.2s;
 }
 
 .post-preview-title {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .post-preview-author {
-    font-size: smaller;
-    display: inline-block;
-    font-style: italic;
+  font-size: smaller;
+  display: inline-block;
+  font-style: italic;
 }
 
 .post-preview-date {
-    font-size: smaller;
-    display: inline-block;
-    margin-left: 20px;
+  font-size: smaller;
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .post-preview-content {
-    font-size: 85%;
-    font-weight: bold;
+  font-size: 85%;
+  font-weight: bold;
 }
 
 .post-preview-tags {
-    list-style-type: none;
+  list-style-type: none;
+  padding: 0;
 }
 
-.post-preview-tags li{
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 80%;
-    font-style: italic;
-    border: 1px solid gainsboro;
-    padding: 4px;
-    border-radius: 20%;
+.post-preview-tags li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 80%;
+  font-style: italic;
+  border: 1px solid gainsboro;
+  padding: 4px;
+  border-radius: 20%;
 }
 
+.likes,
+.comments {
+  display: inline-block;
+  margin-right: 20px;
+}
 
 /* ---------------------------------------------------- */
 /* POSTS LIST  */
 
 .posts-list {
-    width: 60%;
+  width: 60%;
+  margin-top: 50px;
 }
+
 
 /* --------------------------------------------------------- */
 /* POST  */
 
 .post {
-    padding: 30px;
-    border-top: 1px solid #19a7ce7a;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    transition: 0.2s;
-    width: 60%;
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  transition: 0.2s;
+  width: 60%;
 }
 
 .post-title {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .post-author {
-    font-size: smaller;
-    display: inline-block;
-    font-style: italic;
+  font-size: smaller;
+  display: inline-block;
+  font-style: italic;
 }
 
 .post-date {
-    font-size: smaller;
-    display: inline-block;
-    margin-left: 20px;
+  font-size: smaller;
+  display: inline-block;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .post-content {
-    font-size: 85%;
-    font-weight: bold;
+  font-size: 85%;
+  font-weight: bold;
 }
 
 .post-tags {
-    list-style-type: none;
+  list-style-type: none;
+  padding: 0;
 }
 
-.post-tags li{
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 80%;
-    font-style: italic;
-    border: 1px solid gainsboro;
-    padding: 4px;
-    border-radius: 20%;
+.post-tags li {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 80%;
+  font-style: italic;
+  border: 1px solid gainsboro;
+  padding: 4px;
+  border-radius: 20%;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* FOOTER  */
+
+footer {
+  padding-bottom: 20px;
+  text-align: center;
+  width: 98%;
+  margin-top: 100px;
 }

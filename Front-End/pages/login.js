@@ -2,9 +2,11 @@ import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 const RegisterPage = () => {
-  const {push} = useRouter();
+  const { push } = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -50,43 +52,49 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="login-page">
-      <h2 className="dark-blue">Log In to your account</h2>
-      <Stack
-        component={"form"}
-        sx={{
-          "& .MuiTextField-root": { m: 2 },
-        }}
-        autoComplete={"off"}
-        className="login-form"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          type={"email"}
-          label={"Email"}
-          variant={"outlined"}
-          name={"email"}
-          value={loginData.email}
-          onChange={handleInputChange}
-          required
-        />
-        <TextField
-          type={"password"}
-          label={"Password"}
-          variant={"outlined"}
-          name={"password"}
-          value={loginData.password}
-          onChange={handleInputChange}
-          required
-        />
-        <Button variant={"contained"} type="submit">
-          Log In
-        </Button>
-      </Stack>
-      <p>Don't have an account yet? <a href="/register">Register</a></p>
-      <p className="text-success">{msg1}</p>
-      <p className="text-danger">{msg2}</p>
-    </div>
+    <>
+      <Nav />
+      <div className="login-page">
+        <h2 className="dark-blue">Log In to your account</h2>
+        <Stack
+          component={"form"}
+          sx={{
+            "& .MuiTextField-root": { m: 2 },
+          }}
+          autoComplete={"off"}
+          className="login-form"
+          onSubmit={handleSubmit}
+        >
+          <TextField
+            type={"email"}
+            label={"Email"}
+            variant={"outlined"}
+            name={"email"}
+            value={loginData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <TextField
+            type={"password"}
+            label={"Password"}
+            variant={"outlined"}
+            name={"password"}
+            value={loginData.password}
+            onChange={handleInputChange}
+            required
+          />
+          <Button variant={"contained"} type="submit">
+            Log In
+          </Button>
+        </Stack>
+        <p>
+          Don't have an account yet? <a href="/register">Register</a>
+        </p>
+        <p className="text-success">{msg1}</p>
+        <p className="text-danger">{msg2}</p>
+      </div>
+      <Footer />
+    </>
   );
 };
 

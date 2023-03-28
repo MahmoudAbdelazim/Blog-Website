@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 import Post from "../components/Post";
 
 const PostPage = () => {
   const router = useRouter();
-  const {id} = router.query;
+  const { id } = router.query;
 
   const [post, setPost] = useState({});
 
@@ -33,8 +35,12 @@ const PostPage = () => {
   }, [id]);
 
   return (
-    <Post post={post} />
-  )
+    <>
+      <Nav />
+      <Post post={post} />
+      <Footer />
+    </>
+  );
 };
 
 export default PostPage;

@@ -26,10 +26,9 @@ const PostsList = () => {
 
   return (
     <div className="posts-list">
-      <h1 className="posts-list-title">Posts</h1>
       {posts.map((post) => {
         return (
-          <PostPreview post={post} />
+          <PostPreview key={post.id} post={post} />
         )
       })}
     </div>

@@ -1,9 +1,21 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import CommentIcon from '@mui/icons-material/Comment';
 
-const PostPreview = ({ post }) => {
+const PostPreview = (props) => {
+
+  const [post, setPost] = useState(props.post);
+
+  useEffect(() => {
+    if (post.content.length > 300) {
+      let trimmedContent = post.content.substring(0, 300) + " .....";
+      setPost({...post, content: trimmedContent});
+    }
+  }, []);
 
   return (
-    <Link href={{pathname: `/post`, query: {id: post.id}}} className="post-preview-link">
+    <Link href={`/post/${post.id}`} className="post-preview-link">
       <div className="post-preview">
         <h3 className="post-preview-title dark-blue">{post.title}</h3>
         <p className="post-preview-author">
@@ -15,9 +27,11 @@ const PostPreview = ({ post }) => {
         <p className="post-preview-content">{post.content}</p>
         <ul className="post-preview-tags">
           {post.tags?.map((tag) => {
-            return <li>{tag}</li>;
+            return <li key={tag}>{tag}</li>;
           })}
         </ul>
+        <p className="likes"><FavoriteBorderIcon /> {post.likes}</p>
+        <p className="comments"><CommentIcon /> {post.comments.length} </p>
       </div>
     </Link>
   );
