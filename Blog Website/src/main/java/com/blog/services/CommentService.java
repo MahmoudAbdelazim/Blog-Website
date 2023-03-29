@@ -22,7 +22,7 @@ public class CommentService {
     private final PostRepository postRepository;
 
     public List<CommentDto> getPostComments(Long postId) {
-        List<Comment> comments = commentRepository.getCommentsByPostIdOrderByDateDesc(postId);
+        List<Comment> comments = commentRepository.getCommentsByPostId(postId);
         List<CommentDto> commentDtos = new ArrayList<>();
         for (Comment comment : comments) {
             CommentDto commentDto = CommentDto

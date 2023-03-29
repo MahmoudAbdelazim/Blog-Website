@@ -43,7 +43,9 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="nav-left">
-        <h3 className="nav-title">Blog Website</h3>
+        <a href={"/"}>
+          <h3 className="nav-title">Blog Website</h3>
+        </a>
         <div>
           <Button
             onClick={handleWritePost}

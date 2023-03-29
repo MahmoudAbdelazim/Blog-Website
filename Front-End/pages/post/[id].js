@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import CommentsList from "../../components/CommentsList";
 import Footer from "../../components/Footer";
 import Nav from "../../components/Nav";
 import Post from "../../components/Post";
@@ -35,7 +36,10 @@ const PostPage = ({ post }) => {
     return (
       <>
         <Nav />
-        <Post post={post} />
+        <div className="post-page">
+          <Post post={post} />
+          <CommentsList post={post} />
+        </div>
         <Footer />
       </>
     );

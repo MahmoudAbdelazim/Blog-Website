@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CommentIcon from '@mui/icons-material/Comment';
+import moment from "moment";
 
 const PostPreview = (props) => {
 
@@ -22,7 +23,7 @@ const PostPreview = (props) => {
           {post.authorFirstName} {post.authorLastName}{" "}
         </p>
         <p className="post-preview-date">
-          {new Date(post.publishedDate).toLocaleDateString()}{" "}
+          {moment(post.publishedDate).format("LLL")}{" "}
         </p>
         <p className="post-preview-content">{post.content}</p>
         <ul className="post-preview-tags">
@@ -31,7 +32,7 @@ const PostPreview = (props) => {
           })}
         </ul>
         <p className="likes"><FavoriteBorderIcon /> {post.likes}</p>
-        <p className="comments"><CommentIcon /> {post.comments.length} </p>
+        <p className="commentsCount"><CommentIcon /> {post.comments.length} </p>
       </div>
     </Link>
   );

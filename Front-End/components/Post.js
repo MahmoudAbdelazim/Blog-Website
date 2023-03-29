@@ -1,5 +1,6 @@
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CommentIcon from '@mui/icons-material/Comment';
+import moment from 'moment';
 
 const Post = ({ post }) => {
   return (
@@ -9,17 +10,17 @@ const Post = ({ post }) => {
         {post.authorFirstName} {post.authorLastName}{" "}
       </p>
       <p className="post-date">
-        {new Date(post.publishedDate).toLocaleDateString()}{" "}
+        {moment(post.publishedDate).format("LLL")}{" "}
       </p>
       <p className="likes">
         <FavoriteBorderIcon /> {post.likes}
       </p>
-      <p className="comments">
+      <p className="commentsCount">
         <CommentIcon /> {(!post.comments ? "0" : post.comments.length)}
       </p>
       <ul className="post-tags">
         {post.tags?.map((tag) => {
-          return <li>{tag}</li>;
+          return <li key={tag}>{tag}</li>;
         })}
       </ul>
       <p className="post-content">{post.content}</p>

@@ -41,6 +41,7 @@ h6 {
 .nav-title {
   margin-right: 20px;
   font-weight: 300;
+  color: black;
 }
 
 .nav-left {
@@ -184,7 +185,7 @@ h6 {
 }
 
 .likes,
-.comments {
+.commentsCount {
   display: inline-block;
   margin-right: 20px;
 }
@@ -201,13 +202,18 @@ h6 {
 /* --------------------------------------------------------- */
 /* POST  */
 
+.post-page {
+  display: flex;
+}
+
 .post {
   padding: 30px;
   border-radius: 20px;
   margin-bottom: 30px;
   margin-top: 20px;
   transition: 0.2s;
-  width: 60%;
+  flex: 60%;
+  display: inline-block;
 }
 
 .post-title {
@@ -245,6 +251,46 @@ h6 {
   border: 1px solid gainsboro;
   padding: 4px;
   border-radius: 20%;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* Comments  */
+
+.comments-container {
+  flex: 32%;
+  vertical-align: top;
+  margin-left: auto;
+  margin-right: 30px;
+  margin-top: 60px;
+}
+
+.comments-list {
+  border: 2px solid #d2eff7;
+  border-radius: 20px;
+  padding: 20px
+}
+
+.comment-text {
+  margin-left: 20px;
+  font-size: 90%;
+  background-color: rgb(240, 240, 240);
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.comment-date {
+  font-size: 70%;
+  margin-left: 25px;
+  color: rgb(128, 128, 128);
+  margin-top: -10px;
+}
+
+.add-comment-container {
+  margin-top: 10px;
+}
+
+.add-comment-input {
+  margin-bottom: 10px;
 }
 
 /* ------------------------------------------------------------------------------ */
