@@ -31,7 +31,7 @@ const AddPostPage = () => {
 
   const handleChangeTags = (e) => {
     setTagsString(e.target.value);
-    setPost({ ...post, tags: tagsString.split(",") });
+    setPost({ ...post, tags: e.target.value.split(",") });
   };
 
   const handleSubmit = (e) => {
