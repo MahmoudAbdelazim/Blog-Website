@@ -31,6 +31,11 @@ public class AuthenticationController {
         return ResponseEntity.ok(authService.login(request));
     }
 
+    @PostMapping("/check-auth")
+    public ResponseEntity<Boolean> checkToken() {
+        return ResponseEntity.ok(true);
+    }
+
     @ExceptionHandler
     public ResponseEntity<String> handleEmailAlreadyExists(EmailAlreadyExists emailAlreadyExists) {
         return new ResponseEntity<>(emailAlreadyExists.getMessage(), HttpStatus.BAD_REQUEST);

@@ -20,7 +20,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+    @Column(length = 100)
     private String title;
+    @Column(length = 5000)
     private String content;
     private Date publishedDate;
     private Integer likes = 0;

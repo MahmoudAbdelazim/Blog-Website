@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,5 +25,10 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @Column(length = 1000)
+    private String comment;
+
     private Integer likes = 0;
+
+    private Date date;
 }
