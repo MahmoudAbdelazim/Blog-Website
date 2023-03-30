@@ -22,7 +22,7 @@ public class Post {
     private Long id;
     @Column(length = 100)
     private String title;
-    @Column(length = 5000)
+    @Column(length = 20000)
     private String content;
     private Date publishedDate;
     private Integer likes = 0;
@@ -33,4 +33,6 @@ public class Post {
     private List<Comment> comments = new ArrayList<>();
     @ElementCollection
     private List<String> tags = new ArrayList<>();
+    @ManyToMany
+    private List<User> likedBy = new ArrayList<>();
 }

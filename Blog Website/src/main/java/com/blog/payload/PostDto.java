@@ -20,4 +20,5 @@ public class PostDto {
     private String authorEmail;
     private List<CommentDto> comments = new ArrayList<>();
     private List<String> tags = new ArrayList<>();
+    private List<String> likedBy = new ArrayList<>();
 }

@@ -1,11 +1,11 @@
 package com.blog.services;
 
 import com.blog.exceptions.PostNotFoundException;
-import com.blog.models.Comment;
 import com.blog.models.Post;
 import com.blog.models.User;
 import com.blog.payload.CommentDto;
 import com.blog.payload.PostDto;
+import com.blog.payload.PostLikesDto;
 import com.blog.repositories.PostRepository;
 import com.blog.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class PostService {
     public PostDto getPost(Long id) throws PostNotFoundException {
         Post post = postRepository.findById(id)
                 .orElseThrow(PostNotFoundException::new);
-        PostDto postDto = PostDto
+        return PostDto
                 .builder()
                 .authorFirstName(post.getAuthor().getFirstName())
                 .authorLastName(post.getAuthor().getLastName())
@@ -37,20 +37,18 @@ public class PostService {
                 .id(post.getId())
                 .tags(post.getTags())
                 .comments(new ArrayList<>())
+                .likedBy(post.getLikedBy().stream().map(User::getUsername).toList())
+                .comments(post.getComments().stream().map(comment ->
+                        CommentDto.builder()
+                                .postId(comment.getPost().getId())
+                                .userEmail(comment.getUser().getEmail())
+                                .userFirstName(comment.getUser().getFirstName())
+                                .userLastName(comment.getUser().getLastName())
+                                .likes(comment.getLikes())
+                                .comment(comment.getComment())
+                                .date(comment.getDate())
+                                .id(comment.getId()).build()).toList())
                 .build();
-        for (Comment comment : post.getComments()) {
-            CommentDto commentDto = CommentDto.builder()
-                    .postId(comment.getPost().getId())
-                    .userEmail(comment.getUser().getEmail())
-                    .userFirstName(comment.getUser().getFirstName())
-                    .userLastName(comment.getUser().getLastName())
-                    .likes(comment.getLikes())
-                    .comment(comment.getComment())
-                    .date(comment.getDate())
-                    .id(comment.getId()).build();
-            postDto.getComments().add(commentDto);
-        }
-        return postDto;
     }
 
     public void addPost(User user, PostDto postDto) {
@@ -62,6 +60,7 @@ public class PostService {
                 .likes(0)
                 .tags(postDto.getTags())
                 .author(user)
+                .likedBy(new ArrayList<>())
                 .build();
         postRepository.saveAndFlush(post);
     }
@@ -69,7 +68,7 @@ public class PostService {
     public List<PostDto> getPosts() {
         List<Post> posts = postRepository.findAllByOrderByPublishedDateDesc();
         List<PostDto> postDtos = new ArrayList<>();
-        for (Post post: posts) {
+        for (Post post : posts) {
             PostDto postDto = PostDto.builder()
                     .content(post.getContent())
                     .publishedDate(post.getPublishedDate())
@@ -80,24 +79,66 @@ public class PostService {
                     .likes(post.getLikes())
                     .tags(post.getTags())
                     .id(post.getId())
+                    .likedBy(post.getLikedBy().stream().map(User::getUsername).toList())
+                    .comments(post.getComments().stream().map(comment ->
+                            CommentDto.builder()
+                                    .postId(comment.getPost().getId())
+                                    .userEmail(comment.getUser().getEmail())
+                                    .userFirstName(comment.getUser().getFirstName())
+                                    .userLastName(comment.getUser().getLastName())
+                                    .likes(comment.getLikes())
+                                    .comment(comment.getComment())
+                                    .date(comment.getDate())
+                                    .id(comment.getId()).build()).toList())
                     .build();
-            List<CommentDto> commentDtos = new ArrayList<>();
-            for (Comment comment: post.getComments()) {
-                CommentDto commentDto = CommentDto.builder()
-                        .userEmail(comment.getUser().getEmail())
-                        .userFirstName(comment.getUser().getFirstName())
-                        .userLastName(comment.getUser().getLastName())
-                        .likes(comment.getLikes())
-                        .id(comment.getId())
-                        .postId(comment.getPost().getId())
-                        .comment(comment.getComment())
-                        .date(comment.getDate())
-                        .build();
-                commentDtos.add(commentDto);
-            }
-            postDto.setComments(commentDtos);
             postDtos.add(postDto);
         }
         return postDtos;
+    }
+
+    public void likePost(User user, Long postId) throws PostNotFoundException {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(PostNotFoundException::new);
+        boolean liked = false;
+        for (User user1 : post.getLikedBy()) {
+            if (user1.getUsername().equals(user.getUsername())) {
+                liked = true;
+                break;
+            }
+        }
+        if (!liked) {
+            post.getLikedBy().add(user);
+            post.setLikes(post.getLikes() + 1);
+        }
+        postRepository.saveAndFlush(post);
+    }
+
+
+    public void unlikePost(User user, Long postId) throws PostNotFoundException {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(PostNotFoundException::new);
+        for (User user1 : post.getLikedBy()) {
+            if (user1.getUsername().equals(user.getUsername())) {
+                post.getLikedBy().remove(user1);
+                post.setLikes(post.getLikes() - 1);
+                break;
+            }
+        }
+        postRepository.saveAndFlush(post);
+    }
+
+    public PostLikesDto getLikes(User user, Long postId) throws PostNotFoundException {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(PostNotFoundException::new);
+        PostLikesDto postLikesDto = PostLikesDto
+                .builder()
+                .likes(post.getLikes()).build();
+        postLikesDto.setLiked(false);
+        for (User user1 : post.getLikedBy()) {
+            if (user1.getUsername().equals(user.getUsername())) {
+                postLikesDto.setLiked(true);
+            }
+        }
+        return postLikesDto;
     }
 }
